@@ -1,5 +1,33 @@
-from domanda import Domanda
 
+from domanda import Domanda
+from giocatore import Giocatore
+
+"""
+1 leggere le domande dal file -> aprire il file,leggere tutte le righe, scorrere il file a blocchi di 7.
+2 salvarle in strutture dati
+3 organizzare le domande per livello
+4 ciclo di gioco
+    scegliere domanda casuale
+    mischiare le risposte
+    chiedere risposta
+    controllare risposta
+5 calcolare punteggio
+6 chiedere nickname
+7 salvare punteggio nel file
+
+RISPOSTE
+tutte_risposte = errate + [corretta]
+random.shuffle(tutte_risposte)
+
+così poi controllo con:
+if tutte_risposte[scelta] == corretta
+
+ogni domanda occupa 6 righe + una vuota
+
+"""
+#1 apro filein modalità lettura r.leggo tutto.divido in righe (0,1,2..)
+righe_file=open("domande.txt","r").read().splitlines()
+print(righe_file)
 
 
 
@@ -35,8 +63,8 @@ def carica_domande():
         # restituisco la lista completa di domande
         return lista_domande
     #ora chiamo il metodo per visualizzarlo a console
-domande= carica_domande()
-print(domande)
+lista_domande = carica_domande()
+print(lista_domande)
 
 #in Python il dizionario (dict) funziona esattamente come una Map in java.
 """
@@ -47,9 +75,17 @@ valore → lista di oggetti Domanda di quel livello
 # dizionario vuoto
 livelli = {}
 
-for d in domande:
+for d in lista_domande:
     # se il livello non esiste ancora, creo la lista
     if d.livello not in livelli:
         livelli[d.livello] = []
     # aggiungo la domanda alla lista del livello
     livelli[d.livello].append(d)
+print(livelli)
+#COSTRUIRE LA LOGICA DEL GIOCO
+
+#creazione giocatore
+giocatore=Giocatore(nickname="", punteggio="")
+
+#variabili gioco
+livello_iniziale=0
